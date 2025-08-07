@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>Projects</h1>
+        <ul>
+            {% for project in projects %}
+                <div>
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" style="max-width:100%; height:auto;" />
+                    <li> {{ project.owner.username }}</li>
+                    <li><a href="{% url 'project_detail' project.id %}">{{ project.title }}</a></li>
+                    <li>{{ project.details }}</li>
+                    <li>Target: {{ project.target }} EGP</li> 
+                    <li>Remaining: {{ project.remaining_target }} EGP</li>
+                    <a href="{% url 'donate' project.id %}">donate</a>       
+                    <br>
+                    <br>
+                </div>
+                
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}

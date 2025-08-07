@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container mt-4">
+        <h1>My Projects</h1>
+        <a href="{% url 'create_project' %}">+ Create New Project</a>
+
+        <ul>
+            {% for project in projects %}
+                <li>
+                    {{ project.title }} |
+                    <a href="{% url 'edit_project' project.pk %}">Edit</a> |
+                    <a href="{% url 'delete_project' project.pk %}">Delete</a>
+                </li>
+
+            {% empty %}
+                <li>No projects yet</li>
+
+            {% endfor %}
+
+
+        </ul>
+    </div>
+{% endblock content %}

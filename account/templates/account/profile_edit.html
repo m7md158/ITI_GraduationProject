@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+        
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class="card shadow rounded">
+                <div class="card-body">
+                    <h3 class="card-title mb-4 text-center">Edit Your Profile</h3>
+
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <h5 class="text-primary">User Info</h5>
+                        <hr>
+                        {{ userform.as_p }}
+
+                        <h5 class="text-primary mt-4">Profile Info</h5>
+                        <hr>
+                        {{ profileform.as_p }}
+                        
+                        
+                        <div class="d-grid mt-4">
+                            <a href="{% url 'password_change' %}" class="btn btn-success">Change Password</a>
+                        </div>
+
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-success">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
