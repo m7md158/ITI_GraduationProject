@@ -19,18 +19,17 @@ def all_projects(request):
 
 
 
-@login_required
-def project_detail(request,id ):
-    project = get_object_or_404(Project, id)
-    return render(request, 'core/project_detail.html', {'project': project})
 
+@login_required
+def project_detail(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)  
+    return render(request, 'core/project_detail.html', {'project': project})
 
 # sepcific projects for user
 def my_projects(request):
     projects = Project.objects.filter(owner=request.user)
     return render(request, 'core/myprojects.html', {'projects': projects})
 
-# donate
 
 # create project
 @login_required
@@ -62,7 +61,6 @@ def edit_project(request, id):
     return render(request, 'core/edit_project.html', {'form': form})
 
 
-# delete project
 @login_required
 def delete_project(request, id):
     project = get_object_or_404(Project, id=id)
@@ -75,15 +73,14 @@ def delete_project(request, id):
 @login_required
 def donate(request, project_id):
     project = get_object_or_404(Project, id=project_id)
+    
     if request.method == 'POST':
-        form = DonationForm(request.POST)
+        donation = Donation(project=project, user=request.user)
+        form = DonationForm(request.POST, instance=donation)
         if form.is_valid():
-            donation = form.save(commit=False)
-            donation.project = project
-            donation.user = request.user
-            donation.save()
+            form.save()
             messages.success(request, 'Donation successful')
-            return redirect('project_detail', id=project_id)
+            return redirect('project_detail', project_id=project_id)
     else:
         form = DonationForm()
     return render(request, 'core/donate.html', {'form': form, 'project': project})

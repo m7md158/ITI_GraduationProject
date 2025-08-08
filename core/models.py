@@ -17,8 +17,6 @@ class Project(models.Model):
     
     def clean(self):
         now = timezone.now()
-        if self.start_time < now:
-            raise ValidationError("Start time must be in the future.")
         if self.end_time <= self.start_time:
             raise ValidationError("End time must be after the start time.")
 
@@ -31,6 +29,12 @@ class Project(models.Model):
 
     def remaining_target(self):
         return self.total_target - self.total_donated()
+    
+    
+    @property
+    def is_active(self):
+        now = timezone.now()
+        return self.start_time <= now <= self.end_time
     
     
 class Donation(models.Model):

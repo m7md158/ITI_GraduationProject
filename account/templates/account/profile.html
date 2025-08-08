@@ -1,38 +1,131 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}My Profile{% endblock %}
+{% block title %}My Profile - CrowdFund{% endblock %}
 
 {% block content %}
-<div class="container mt-5">
+<div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-
-            <div class="card shadow-lg rounded">
-                <div class="card-body">
-                    <h3 class="card-title text-center mb-4">My Profile</h3>
-
-                    <div class="text-center mb-4">
-                        {% if profile.image %}
-                            <img src="{{ profile.image.url }}" class="rounded-circle img-thumbnail" style="max-height: 150px;" alt="Profile Picture">
-                        {% else %}
-                            <img src="{% static 'default-avatar.png' %}" class="rounded-circle img-thumbnail" style="max-height: 150px;" alt="Default Profile">
-                        {% endif %}
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-5">
+                    <!-- Profile Header -->
+                    <div class="text-center mb-5">
+                        <div class="position-relative d-inline-block mb-3">
+                            {% if profile.image %}
+                                <img src="{{ profile.image.url }}" class="profile-image rounded-circle" alt="Profile Picture">
+                            {% else %}
+                                <div class="profile-image rounded-circle bg-primary d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-user fa-3x text-white"></i>
+                                </div>
+                            {% endif %}
+                            <div class="position-absolute bottom-0 end-0 bg-success rounded-circle p-2 border border-white">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                        </div>
+                        <h2 class="fw-bold mb-2">{{ user.get_full_name|default:user.username }}</h2>
+                        <p class="text-muted mb-0">
+                            <i class="fas fa-at me-1"></i>{{ user.username }}
+                        </p>
                     </div>
 
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Username:</strong> {{ user.username }}</li>
-                        <li class="list-group-item"><strong>Full Name:</strong> {{ user.first_name }} {{ user.last_name }}</li>
-                        <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
-                        <li class="list-group-item"><strong>Mobile Phone:</strong> {{ profile.phone_number }}</li>
-                    </ul>
+                    <!-- Profile Information -->
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 border-0 bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary mb-3">
+                                        <i class="fas fa-user-circle me-2"></i>Personal Information
+                                    </h5>
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-user text-muted me-3" style="width: 20px;"></i>
+                                                <div>
+                                                    <small class="text-muted d-block">Username</small>
+                                                    <strong>{{ user.username }}</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-id-card text-muted me-3" style="width: 20px;"></i>
+                                                <div>
+                                                    <small class="text-muted d-block">Full Name</small>
+                                                    <strong>{{ user.first_name }} {{ user.last_name|default:"Not provided" }}</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-envelope text-muted me-3" style="width: 20px;"></i>
+                                                <div>
+                                                    <small class="text-muted d-block">Email Address</small>
+                                                    <strong>{{ user.email|default:"Not provided" }}</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100 border-0 bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary mb-3">
+                                        <i class="fas fa-map-marker-alt me-2"></i>Contact Information
+                                    </h5>
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-phone text-muted me-3" style="width: 20px;"></i>
+                                                <div>
+                                                    <small class="text-muted d-block">Phone Number</small>
+                                                    <strong>{{ profile.phone_number|default:"Not provided" }}</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-city text-muted me-3" style="width: 20px;"></i>
+                                                <div>
+                                                    <small class="text-muted d-block">City</small>
+                                                    <strong>{{ profile.city|default:"Not provided" }}</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-calendar-alt text-muted me-3" style="width: 20px;"></i>
+                                                <div>
+                                                    <small class="text-muted d-block">Member Since</small>
+                                                    <strong>{{ user.date_joined|date:"F j, Y" }}</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <!-- Action Buttons -->
                     <div class="text-center mt-4">
-                        <a href="{% url 'profile_edit' %}" class="btn btn-primary">Edit Profile</a>
+                        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                            <a href="{% url 'edit' %}" class="btn btn-primary btn-lg">
+                                <i class="fas fa-edit me-2"></i>Edit Profile
+                            </a>
+                            <a href="{% url 'password_change' %}" class="btn btn-outline-secondary btn-lg">
+                                <i class="fas fa-key me-2"></i>Change Password
+                            </a>
+                            <a href="{% url 'myprojects' %}" class="btn btn-outline-info btn-lg">
+                                <i class="fas fa-folder me-2"></i>My Projects
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
