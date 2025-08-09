@@ -19,3 +19,10 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['city', 'phone_number', 'image']
+        
+        widgets = {
+            'city': forms.Select(attrs={'class': 'form-control'}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
+            'image': forms.FileInput(attrs={'class': 'form-control-file'}),
+           
+       }

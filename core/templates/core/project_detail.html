@@ -95,26 +95,14 @@
                                 {{ project.total_donated|floatformat:0 }} EGP raised
                             </small>
                         </div>
-                        <div class="progress mb-2" style="height: 12px;">
-                            {% widthratio project.total_donated project.target 100 as progress_percentage %}
-                            <div class="progress-bar bg-primary" 
-                                 role="progressbar" 
-                                 style="width: {{ progress_percentage }}%"
-                                 aria-valuenow="{{ progress_percentage }}" 
-                                 aria-valuemin="0" 
-                                 aria-valuemax="100">
-                            </div>
-                        </div>
-                        <small class="text-muted">
-                            {{ progress_percentage }}% of {{ project.target|floatformat:0 }} EGP goal
-                        </small>
+                        
                     </div>
 
                     <!-- Funding Stats -->
                     <div class="row text-center mb-4">
                         <div class="col-6">
                             <div class="border-end">
-                                <div class="fw-bold text-primary fs-4">{{ project.target|floatformat:0 }}</div>
+                                <div class="fw-bold text-primary fs-4">{{ project.total_target|floatformat:0 }}</div>
                                 <small class="text-muted">Target (EGP)</small>
                             </div>
                         </div>
@@ -214,4 +202,7 @@
         </div>
     {% endif %}
 </div>
+
+
+
 {% endblock %}

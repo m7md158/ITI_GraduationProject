@@ -96,17 +96,18 @@
                                     {% endfor %}
                                 </div>
                             {% endif %}
+
+
+                            
                             {% if form.password1.help_text %}
                                 <div class="form-text">
-                                    <ul class="list-unstyled mb-0">
-                                        {% for help_text in form.password1.help_text|safe|split:'<li>' %}
-                                            {% if help_text %}
-                                                <li><i class="fas fa-check-circle text-success me-1"></i>{{ help_text|safe }}</li>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </ul>
-                                </div>
+                                    {{ form.password1.help_text | safe}}">
+                                </div>                                
                             {% endif %}
+                                
+
+
+
                         </div>
 
                         <!-- Password2 Field -->

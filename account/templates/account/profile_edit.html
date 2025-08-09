@@ -149,17 +149,14 @@
                                     {% endif %}
                                 </div>
 
+
                                 <!-- City Field -->
                                 <div class="mb-3">
                                     <label for="{{ profileform.city.id_for_label }}" class="form-label fw-semibold">
                                         <i class="fas fa-city me-2"></i>City
                                     </label>
-                                    <input type="text" 
-                                           class="form-control {% if profileform.city.errors %}is-invalid{% endif %}" 
-                                           id="{{ profileform.city.id_for_label }}"
-                                           name="{{ profileform.city.name }}"
-                                           value="{{ profileform.city.value|default:'' }}"
-                                           placeholder="Enter your city">
+
+                                    {{ profileform.city }}
                                     {% if profileform.city.errors %}
                                         <div class="invalid-feedback">
                                             {% for error in profileform.city.errors %}

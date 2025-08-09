@@ -81,37 +81,24 @@
                             <!-- Progress Bar -->
                             <div class="mb-3">
                                 <div class="d-flex justify-content-between align-items-center mb-1">
-                                    <small class="text-muted">Progress</small>
+                                    <small class="text-muted">Progress</small> 
                                     <small class="text-muted fw-semibold">
-                                        {{ project.remaining_target|floatformat:0 }} EGP raised
+                                       {{ project.total_donated|floatformat:0 }} EGP raised
                                     </small>
                                 </div>
-                                <div class="progress" style="height: 8px;">
-                                    {% widthratio project.remaining_target project.target 100 as progress_percentage %}
-                                    <div class="progress-bar bg-primary" 
-                                         role="progressbar" 
-                                         style="width: {{ progress_percentage }}%"
-                                         aria-valuenow="{{ progress_percentage }}" 
-                                         aria-valuemin="0" 
-                                         aria-valuemax="100">
-                                    </div>
-                                </div>
-                                <small class="text-muted">
-                                    {{ progress_percentage }}% of {{ project.target|floatformat:0 }} EGP goal
-                                </small>
                             </div>
 
                             <!-- Project Stats -->
                             <div class="row text-center mb-3">
                                 <div class="col-6">
                                     <div class="border-end">
-                                        <div class="fw-bold text-primary">{{ project.target|floatformat:0 }}</div>
+                                        <div class="fw-bold text-primary">{{ project.total_target|floatformat:0 }}</div>
                                         <small class="text-muted">Target (EGP)</small>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="fw-bold text-success">{{ project.remaining_target|floatformat:0 }}</div>
-                                    <small class="text-muted">Raised (EGP)</small>
+                                    <small class="text-muted">Remaining (EGP)</small>
                                 </div>
                             </div>
 

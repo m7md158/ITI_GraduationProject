@@ -80,7 +80,8 @@ def donate(request, project_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Donation successful')
-            return redirect('project_detail', project_id=project_id)
+            
+            return redirect('project_detail', project_id=project_id )
     else:
         form = DonationForm()
     return render(request, 'core/donate.html', {'form': form, 'project': project})

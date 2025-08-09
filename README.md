@@ -189,26 +189,8 @@ A Django-based crowdfunding platform that allows users to create, manage, and do
 - **Progress Tracking**: Real-time updates on funding progress
 - **User Profiles**: Extended profiles with city and contact information
 
-## 🔧 Configuration
 
-### Environment Variables
-The application uses the following environment variables for database configuration:
 
-```bash
-DB_NAME=ITI_graduationProject
-DB_USER=postgres
-DB_PASSWORD=1234
-DB_HOST=localhost
-DB_PORT=5432
-```
-
-### Settings Customization
-Key settings in `project/settings.py`:
-- `DEBUG`: Set to `False` for production
-- `SECRET_KEY`: Change for production deployment
-- `ALLOWED_HOSTS`: Configure for your domain
-- `MEDIA_ROOT`: Path for uploaded files
-- `STATIC_URL`: Static files URL
 
 ## 🐳 Docker Configuration
 
