@@ -2,6 +2,17 @@
 
 A Django-based crowdfunding platform that allows users to create, manage, and donate to projects. This project was developed as an ITI graduation project.
 
+
+# Demo Video
+
+Click the image below to watch the video:
+
+[![Watch the video](https://img.youtube.com/vi/2cD56h3Zrgs/0.jpg)](https://youtu.be/2cD56h3Zrgs?si=udaT3X0KZ31gsF9p)
+
+Or watch it directly on YouTube:  
+https://youtu.be/2cD56h3Zrgs?si=udaT3X0KZ31gsF9p
+
+
 ## 🚀 Features
 
 ### Core Functionality
